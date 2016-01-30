@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ToDo">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript" src="js/todo.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div ng-controller="todoController" class="container">
+    <h1>To-Do List</h1>
+    <form name="frm" ng-submit="addTodo()">
+      <input type="text" name="newTodo" ng-model="newTodo" class="input-add-todo">
+      <button class="btn">Add</button>
+    </form>
+    <button class="btn btn-clear" ng-click="clearAll()">Clear Completed</button>
+    
+    <div class="items">
+      <div>
+        <h2 class="done" aria-hidden="true">Done ({{doneToDos.length}})</h2>
+        <div ng-repeat="doneDos in doneToDos track by $index">
+          <label ng-class="{'done':todo.done}" ng-click="putNotDone($index)" class="label-done">
+            </i> {{$index + 1 }} {{doneDos.title}}</label>
+        </div>
+      </div>
+      <div>
+        <h2 class="undone" aria-hidden="true">Not Done ({{todos.length}})</h2>
+        <div ng-repeat="todo in todos track by $index">
+          <label ng-class="{'done':todo.done}" ng-click="putDone($index)" class="label-not">
+            </i> {{$index+1}} {{todo.title}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
